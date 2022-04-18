@@ -2,16 +2,13 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi import Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from sqlmodel import SQLModel, Session, select
-from starlette import status
+from sqlmodel import SQLModel
 from starlette.responses import JSONResponse
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 
-from db import engine, get_session
+from db import engine
 from routers import cars, web, auth
 from routers.cars import BadTripException
-from schemas import UserOutput, User
 
 app = FastAPI(title="Car Sharing")
 app.include_router(web.router)
@@ -45,11 +42,11 @@ async def unicorn_exception_handler(request: Request, exc: BadTripException):
     )
 
 
-@app.middleware("http")
-async def add_cars_cookie(request: Request, call_next):
-    response = await call_next(request)
-    response.set_cookie(key="cars_cookie", value="you_visited_the_carsharing_app")
-    return response
+# @app.middleware("http")
+# async def add_cars_cookie(request: Request, call_next):
+#     response = await call_next(request)
+#     response.set_cookie(key="cars_cookie", value="you_visited_the_carsharing_app")
+#     return response
 
 
 if __name__ == "__main__":
