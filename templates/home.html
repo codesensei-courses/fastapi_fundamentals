@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Carsharing Demo</title>
+</head>
+<body>
+<h1>Welcome to the Car Sharing service</h1>
+<p>Search for the car you need:
+<form action="search" method="post">
+    <table>
+        <tr>
+            <td><label for="doors">Number of doors:</label></td>
+            <td><input type="number" min="1" max="5" name="doors" required></td>
+        </tr>
+        <tr>
+            <td><label for="size">Size:</label></td>
+            <td><select name="size" required>
+                <option value="s" selected>Small</option>
+                <option value="m">Medium</option>
+                <option value="l">Large</option>
+            </select>
+            </td>
+        </tr>
+    </table>
+    <button type="submit">Search</button>
+</form>
+</p>
+</body>
+
+</html>

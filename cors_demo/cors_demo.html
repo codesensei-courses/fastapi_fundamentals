@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FastAPI CORS demo</title>
+</head>
+<body>
+<p>
+    Use the following command to serve this file:
+</p>
+<pre> python -m http.server 8080 </pre>
+<p>
+    This will server the current file at http://localhost:8080.
+</p>
+<p>
+    The button below will send a request to the API at http://localhost:8000/api/cars.
+</p>
+<button>Klik me!</button>
+<p>
+<div id="output"></div>
+</p>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('button').click(function () {
+            $.get("http://localhost:8000/api/cars/").done(function (data) {
+                $('#output').text(`Succesfully received ${data.length} cars`);
+            }).fail(function () {
+                $('#output').text("Failed!");
+            });
+        });
+    })
+</script>
+</body>
+</html>
